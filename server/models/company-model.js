@@ -1,23 +1,13 @@
-const { Schema, model, mongoose } = require("mongoose");
+const mongoose = require('mongoose');
 
-const companySchema = new Schema({
-  companyname: {
-    type: "String",
-    require: true,
-  },
-  title: {
-    type: "String",
-    require: true,
-  },
-  description: {
-    type: "String",
-    require: true,
-  },
-  imageUrl: {
-    type: "String",
-    require: true,
-  },
-});
+const companySchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  logo: { type: String },
+  email: { type: String, required: true, unique: true },
+  industry: { type: String },
+  contact: { type: String },
+  description: { type: String },
+  // Add other fields as needed
+}, { timestamps: true });
 
-const company = new model("companydata", companySchema);
-module.exports = company;
+module.exports = mongoose.model('Company', companySchema);

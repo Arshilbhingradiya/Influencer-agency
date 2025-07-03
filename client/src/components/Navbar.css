@@ -1,0 +1,353 @@
+/* Navbar Container */
+nav {
+    background: linear-gradient(to right, #2c3e50, #3498db);
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Flex Container */
+.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo */
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: #f1c40f;
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #f1c40f;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #f1c40f;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Auth Buttons */
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.login-btn {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.signup-btn {
+    background-color: #f1c40f;
+    color: #2c3e50;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.signup-btn:hover {
+    background-color: #f39c12;
+    transform: translateY(-2px);
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #2c3e50;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+    .nav-links,
+    .auth-buttons {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .mobile-menu.active {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .mobile-menu .nav-link,
+    .mobile-menu .login-btn,
+    .mobile-menu .signup-btn {
+        display: block;
+        padding: 0.5rem 0;
+    }
+}
+
+/* User Menu Styles */
+.user-menu {
+    position: relative;
+}
+
+.user-icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.user-icon-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.user-icon {
+    width: 24px;
+    height: 24px;
+    color: white;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+    margin-top: 8px;
+    z-index: 1000;
+    animation: slideDown 0.2s ease;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #f5f5f5;
+    color: #007bff;
+}
+
+.logout-btn {
+    color: #dc3545;
+    border-top: 1px solid #eee;
+}
+
+.logout-btn:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Professional Footer Styles --- */
+.footer-pro {
+    background: linear-gradient(90deg, #232526 0%, #414345 100%);
+    color: #fff;
+    padding: 0;
+    margin-top: 48px;
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.08);
+}
+
+.footer-pro-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px 16px 24px;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.footer-pro-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-pro-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #fff;
+    object-fit: contain;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+}
+
+.footer-pro-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #f1c40f;
+}
+
+.footer-pro-nav {
+    display: flex;
+    gap: 32px;
+}
+
+.footer-pro-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.2s;
+    position: relative;
+}
+
+.footer-pro-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #f1c40f;
+    transition: width 0.3s;
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+}
+
+.footer-pro-link:hover {
+    color: #f1c40f;
+}
+
+.footer-pro-link:hover::after {
+    width: 100%;
+}
+
+.footer-pro-social {
+    display: flex;
+    gap: 18px;
+}
+
+.footer-pro-social-icon {
+    color: #fff;
+    font-size: 1.6rem;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.footer-pro-social-icon:hover {
+    color: #f1c40f;
+    transform: translateY(-2px) scale(1.1);
+}
+
+.footer-pro-bottom {
+    text-align: center;
+    padding: 12px 0 8px 0;
+    font-size: 1rem;
+    color: #bbb;
+    border-top: 1px solid #333;
+    background: rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 800px) {
+    .footer-pro-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        padding: 24px 10px 10px 10px;
+    }
+
+    .footer-pro-nav {
+        gap: 18px;
+    }
+
+    .footer-pro-logo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .footer-pro-title {
+        font-size: 1.2rem;
+    }
+}

@@ -17,9 +17,14 @@ const AuthProvider = ({ children }) => {
   // logout functinality
   const isLoggedIn = !!token;
 
-  const LogoutUser = () => {
+  const LogoutUser = (callback) => {
     setToken("");
-    return localStorage.removeItem("token");
+    setuser(""); // Also clear user data
+    localStorage.removeItem("token");
+    // Execute callback if provided (for resetting UI state like sidebar)
+    if (callback && typeof callback === 'function') {
+      callback();
+    }
   };
 
   // JWT authentication- to get currently login user data like( "hello arshil ");
@@ -58,6 +63,13 @@ const AuthProvider = ({ children }) => {
     getservice();
     userAuthentication();
   }, []);
+
+  // Reset user data when token changes (logout)
+  useEffect(() => {
+    if (!token) {
+      setuser("");
+    }
+  }, [token]);
 
   return (
     <AuthContext.Provider

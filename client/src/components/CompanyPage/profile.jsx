@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import "./st.css";
 import { useAuth } from "../../store/auth";
 
-function Profile() {
+function Companyprofile() {
   const { user } = useAuth();
+  const defaultProfilePic = "https://ui-avatars.com/api/?name=" + (user?.fullname || "User");
+  const defaultCoverPic = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80";
 
-  // Initialize state with data from localStorage (if available)
   const [profileData, setProfileData] = useState(() => {
     const savedProfileData = localStorage.getItem("profileData");
     return savedProfileData
@@ -22,62 +23,64 @@ function Profile() {
           pinCode: "",
         };
   });
-
   const [isEditing, setIsEditing] = useState(false);
 
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProfileData({ ...profileData, [name]: value });
   };
 
-  // Handle form submission and save profile data to localStorage
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem("profileData", JSON.stringify(profileData));
-    console.log("Updated profile data:", profileData);
     setIsEditing(false);
   };
 
-  // Sync localStorage with updated profile data on each change
   useEffect(() => {
     localStorage.setItem("profileData", JSON.stringify(profileData));
   }, [profileData]);
 
   return (
-    <div className="profile-container">
-      <div className="profile-cover">
+    <div className="profile-container pro-modern">
+      <div className="profile-cover pro-cover">
         <img
-          src="/path/to/cover-photo.jpg"
+          src={defaultCoverPic}
           alt="Cover"
-          className="cover-image"
+          className="cover-image pro-cover-img"
         />
+        <label className="cover-edit-icon" title="Change cover photo">
+          <span role="img" aria-label="edit">🖼️</span>
+        </label>
       </div>
-
-      <div className="profile-header">
-        <img
-          src="/path/to/profile-pic.jpg"
-          alt="Profile"
-          className="profile-image"
-        />
-        <div className="profile-details">
-          <h1 className="profile-name">{user.username}</h1>
-          <p className="profile-title">Company data </p>
+      <div className="profile-header pro-header">
+        <div className="pro-profile-pic-wrapper">
+          <img
+            src={defaultProfilePic}
+            alt="Profile"
+            className="profile-image pro-profile-img"
+          />
+          <label className="profile-edit-icon" title="Change profile photo">
+            <span role="img" aria-label="edit">📷</span>
+          </label>
+        </div>
+        <div className="profile-details pro-details">
+          <h1 className="profile-name pro-name">{profileData.fullname || user.username}</h1>
+          <p className="profile-title pro-title">Company Data</p>
         </div>
         <button
-          className="edit-button"
+          className="edit-button pro-edit-btn"
           onClick={() => setIsEditing(!isEditing)}
+          type="button"
         >
           {isEditing ? "Cancel" : "Edit Profile"}
         </button>
       </div>
-
       <form
         onSubmit={handleSubmit}
-        className={`profile-form ${isEditing ? "editing" : ""}`}
+        className={`profile-form pro-form ${isEditing ? "editing" : ""}`}
+        autoComplete="off"
       >
-        {/* Basic Information Section */}
-        <div className="profile-section">
+        <div className="profile-section pro-section">
           <h2>Basic Information</h2>
           <div className="form-group">
             <label htmlFor="fullname">Full Name</label>
@@ -88,6 +91,7 @@ function Profile() {
               value={profileData.fullname}
               onChange={handleChange}
               disabled={!isEditing}
+              autoComplete="off"
             />
           </div>
           <div className="form-group">
@@ -99,17 +103,19 @@ function Profile() {
               value={profileData.email}
               onChange={handleChange}
               disabled={!isEditing}
+              autoComplete="off"
             />
           </div>
           <div className="form-group">
-            <label htmlFor="user">Phone Number</label>
+            <label htmlFor="phone">Phone Number</label>
             <input
-              type="number"
+              type="tel"
               id="phone"
               name="phone"
               value={profileData.phone}
               onChange={handleChange}
               disabled={!isEditing}
+              autoComplete="off"
             />
           </div>
           <div className="form-group">
@@ -121,6 +127,7 @@ function Profile() {
               value={profileData.address}
               onChange={handleChange}
               disabled={!isEditing}
+              autoComplete="off"
             />
           </div>
           <div className="form-group">
@@ -132,12 +139,11 @@ function Profile() {
               value={profileData.pinCode}
               onChange={handleChange}
               disabled={!isEditing}
+              autoComplete="off"
             />
           </div>
         </div>
-
-        {/* About Me Section */}
-        <div className="profile-section">
+        <div className="profile-section pro-section">
           <h2>About Me</h2>
           <textarea
             id="aboutMe"
@@ -148,9 +154,7 @@ function Profile() {
             disabled={!isEditing}
           ></textarea>
         </div>
-
-        {/* Social Media & Contact Section */}
-        <div className="profile-section">
+        <div className="profile-section pro-section">
           <h2>Social Media & Contact</h2>
           <div className="form-group">
             <label htmlFor="instagramFollowers">Instagram Followers</label>
@@ -186,10 +190,9 @@ function Profile() {
             />
           </div>
         </div>
-
         {isEditing && (
-          <div className="form-actions">
-            <button type="submit" className="save-button">
+          <div className="form-actions pro-actions">
+            <button type="submit" className="save-button pro-save-btn">
               Save Changes
             </button>
           </div>
@@ -199,4 +202,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default Companyprofile;

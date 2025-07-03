@@ -8,8 +8,10 @@ const servicerouter = require("./router/service-router");
 const adminrouter = require("./router/admin-router");
 const userrouter = require("./router/userinfo-router.js");
 const companyrouter = require("./router/company-router");
-const influrouter = require("./router/influencer-router");
+// const influrouter = require("./router/influencer-router.js");
+const campaignRoutes=require("./router/campaignRoutes");
 const connectdb = require("./db");
+const influencerRoutes =require("./router/influencerRoutes");
 
 // cors
 
@@ -36,9 +38,10 @@ app.use("/api/admin", adminrouter);
 app.use("/api/user", userrouter);
 
 // company panel
-
+app.use("/api/campaigns", campaignRoutes);
 app.use("/api/company", companyrouter);
-app.use("/api/influencer", influrouter);
+// app.use("/api/influencer", influrouter);
+app.use("/api/influencer", influencerRoutes);
 // app.use("/api/idata", irouter);
 
 // app.use("/api/form", router);
