@@ -222,3 +222,44 @@ exports.updateApplicationStatus = async (req, res) => {
     });
   }
 };
+
+// Admin: Update campaign status (approve/reject)
+exports.adminUpdateCampaignStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    if (!['approved', 'rejected', 'pending', 'active', 'draft', 'completed'].includes(status)) {
+      return res.status(400).json({ error: 'Invalid status value' });
+    }
+    const campaign = await Campaign.findByIdAndUpdate(id, { status }, { new: true });
+    if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
+    res.json({ message: 'Campaign status updated', campaign });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update campaign status' });
+  }
+};
+
+// Admin: Delete campaign
+exports.adminDeleteCampaign = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const campaign = await Campaign.findByIdAndDelete(id);
+    if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
+    res.json({ message: 'Campaign deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to delete campaign' });
+  }
+};
+
+// Admin: Edit campaign
+exports.adminEditCampaign = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const update = req.body;
+    const campaign = await Campaign.findByIdAndUpdate(id, update, { new: true });
+    if (!campaign) return res.status(404).json({ error: 'Campaign not found' });
+    res.json({ message: 'Campaign updated', campaign });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update campaign' });
+  }
+};

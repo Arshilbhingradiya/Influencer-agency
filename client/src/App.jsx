@@ -27,6 +27,7 @@ import InfluDashboard from "./components/InfluensorPage/Infludashboard";
 import AppliedCampaigns from "./components/InfluensorPage/AppliedCampaigns";
 import AvailableCampaigns from "./components/InfluensorPage/AvailableCampaigns";
 import CampaigninfluDetail from "./components/InfluensorPage/CampaigninfluDetail";
+import Admincampaigns from "./pages/Admincampaigns";
 
 function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -65,6 +66,7 @@ function App() {
               {/* // we not need to write "/users beacuse nested Route is automaticaly consider like " Admin/users" */}
               <Route path="users" element={<Adminusers />} />
               <Route path="contacts" element={<Admincontacts />} />
+              <Route path="campaigns" element={<Admincampaigns />} />
             </Route>
           </Routes>
         </div>
